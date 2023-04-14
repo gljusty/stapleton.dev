@@ -1,0 +1,29 @@
+<svg id="visual" viewBox="0 0 960 540" width="960" height="540" xmlns="http://www.w3.org/2000/svg"
+    xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1">
+    <style type="text/css">
+        svg circle {
+            filter: drop-shadow(1rem 1rem 10rem black) !important;
+
+        }
+    </style>
+
+    <defs>
+        <filter id="blur1" x="-10%" y="-10%" width="50%" height="120%">
+            <feFlood flood-opacity="50" result="BackgroundImageFix"></feFlood>
+            <feBlend mode="additive" in="SourceGraphic" in2="BackgroundImageFix" result="shape"></feBlend>
+            <feGaussianBlur stdDeviation="69" result="effect1_foregroundBlur"></feGaussianBlur>
+        </filter>
+    </defs>
+    <!-- <rect height="540" width="960" fill="black" /> -->
+    <g filter="url(#blur1)">
+        <circle cx="454" cy="510" fill="#a13d3d" r="363"></circle>
+        <circle cx="64" cy="186" fill="#9063da" r="363"></circle>
+        <circle cx="351" cy="105" fill="#7e2626" r="363"></circle>
+        <circle cx="738" cy="377" fill="#000000" r="363"></circle>
+        <circle cx="48" cy="479" fill="#0ec7b7" r="363"></circle>
+        <circle cx="873" cy="111" fill="#000000" r="363"></circle>
+        <animate id="op" attributeType="CSS" attributeName="transform" from="0 0" to="100 0" dur="3s"
+            begin="3s;op.end+3s" />
+    </g>
+
+</svg>
