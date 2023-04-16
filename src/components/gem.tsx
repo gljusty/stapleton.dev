@@ -69,7 +69,7 @@ export default function Gems() {
         position={[0, -scrollPosition / 20, 0]}
         rotation={[-Math.PI / 3, Math.PI / 3, 2]}
       >
-        <planeGeometry args={[1000, 1000, 1000]} />
+        <planeGeometry args={[1000 - scrollPosition, 1000, 1000]} />
         <MeshTransmissionMaterial
           emissiveIntensity={0}
           emissive={[0.125, 0, 0.125]}
@@ -85,14 +85,8 @@ export default function Gems() {
       </mesh>
       <pointLight
         position={[-2, 10, 0]}
-        intensity={1.5}
+        intensity={0.5}
         color={[0, 0, 0.125]}
-      />
-      <ambientLight
-        position={[0, 0, 0]}
-        intensity={0.25}
-        color={[1, 0, 0.125]}
-        rotation={[0, 0, 0]}
       />
     </group>
   );
