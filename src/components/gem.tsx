@@ -54,10 +54,9 @@ export default function Gem() {
         <MeshRefractionMaterial
           envMap={texture}
           aberrationStrength={0.01}
-          bounces={4}
+          bounces={2}
           blending={AdditiveBlending}
-          fastChroma
-          wireframe={scrollPosition > 800}
+          fresnel={0.1}
         />
       </mesh>
     </group>

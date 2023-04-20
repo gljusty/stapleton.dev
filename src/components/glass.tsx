@@ -1,4 +1,7 @@
-import { MeshTransmissionMaterial } from "@react-three/drei";
+import {
+  MeshDistortMaterial,
+  MeshTransmissionMaterial,
+} from "@react-three/drei";
 import useScrollPosition from "../hooks/use-scroll-position";
 import { useFrame } from "@react-three/fiber";
 import { useRef } from "react";
@@ -12,23 +15,13 @@ export default function Glass() {
     }
   });
   return (
-    <group dispose={null}>
-      <mesh
-        position={[2, 0, -4]}
-        rotation={[-Math.PI / 2 - 0.125, -Math.PI / 3 - 0.1, 1]}
-      >
-        <planeGeometry args={[1000, 1000, 1000]} />
-        <MeshTransmissionMaterial
-          color={[1, 1, 1]}
-          emissiveIntensity={0}
-          distortionScale={1}
-          temporalDistortion={0.25}
-          samples={16}
-          resolution={512}
-          anisotropy={0}
-          thickness={0.275}
-          roughness={0.275}
-          toneMapped={true}
+    <group dispose={null} rotation={[0.5, 0, 0]}>
+      <mesh position={[2, 0, -4]}>
+        <torusGeometry args={[3, 2, 2]} />
+        <MeshDistortMaterial
+          color={[0.25, 0.25, 0.25]}
+          distort={0.25}
+          speed={1.2}
         />
       </mesh>
     </group>
