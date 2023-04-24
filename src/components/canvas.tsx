@@ -1,57 +1,76 @@
 import {
-  EffectComposer,
-  DepthOfField,
+  ContactShadows,
+  Environment,
+  Float,
+  MeshRefractionMaterial,
+  MeshTransmissionMaterial,
+  MeshWobbleMaterial,
+  OrbitControls,
+  PerspectiveCamera,
+  PresentationControls,
+  Reflector,
   Select,
-  Bloom,
-} from "@react-three/postprocessing";
-import { Environment, PerspectiveCamera } from "@react-three/drei";
-import { Canvas } from "@react-three/fiber";
+  Sky,
+  Sparkles,
+  Stars,
+} from "@react-three/drei";
+import { Canvas, useThree } from "@react-three/fiber";
 import Gem from "./gem";
-import { Preload } from "@react-three/drei";
-import useScrollPosition from "../hooks/use-scroll-position";
-import Glass from "./glass";
+import { Bloom, EffectComposer } from "@react-three/postprocessing";
+import Laptop from "./laptop";
 
 export default function MainCanvas() {
-  const scrollPosition = useScrollPosition();
-
   return (
     <div id="canvas-wrapper">
-      <Canvas>
-        <PerspectiveCamera makeDefault>
-          <directionalLight
+      <Canvas shadows="soft">
+        <PerspectiveCamera
+          fov={30}
+          far={1000}
+          position={[0, 0, 10]}
+          makeDefault
+        />
+        <Environment preset="sunset" blur={1.9} resolution={256} />
+        <PresentationControls
+          speed={0.5}
+          azimuth={[-Math.PI / 2, Math.PI / 2]}
+          snap
+          polar={[-3, 3]}
+        >
+          <Laptop
+            scale={[0.1, 0.1, 0.1]}
+            rotation={[0, 0.5, 0]}
+            position={[-2, -2, -2]}
             castShadow
-            position={[0, 10, 0]}
-            shadow-camera-right={8}
-            shadow-camera-top={8}
-            shadow-camera-left={-8}
-            shadow-camera-bottom={-8}
-            shadow-mapSize-width={1024}
-            shadow-mapSize-height={1024}
-            intensity={1}
-            shadow-bias={-0.0001}
+            receiveShadow
           />
-          <directionalLight
-            castShadow
-            position={[20, 10, 0]}
-            shadow-camera-right={8}
-            shadow-camera-top={8}
-            shadow-camera-left={-8}
-            shadow-camera-bottom={-8}
-            shadow-mapSize-width={1024}
-            shadow-mapSize-height={1024}
-            intensity={1}
-            shadow-bias={-0.0001}
-          />
-        </PerspectiveCamera>
+        </PresentationControls>
+
         <EffectComposer>
-          <DepthOfField blur={4} focusDistance={0.01} height={20} width={20} />
+          <Bloom
+            kernelSize={1}
+            mipmapBlur
+            levels={7}
+            intensity={0.15}
+            luminanceSmoothing={1}
+            luminanceThreshold={0.25}
+          />
         </EffectComposer>
+
         <Gem />
 
-        <Environment preset="apartment" />
-        <ambientLight intensity={1.25} />
+        <directionalLight
+          position={[0.3, 3.0, 0.4]}
+          intensity={0.284}
+          castShadow
+        />
 
-        <Preload all />
+        <directionalLight
+          position={[1.3, 1.0, 4.4]}
+          intensity={0.25}
+          castShadow
+        />
+
+        <pointLight intensity={1.2} position={[10, 10, -10]} />
       </Canvas>
     </div>
   );

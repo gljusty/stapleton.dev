@@ -6,7 +6,6 @@ export default function Document() {
       <title>Bryan Stapleton</title>
       <Head>
         <meta name="description" content="" />
-        <link rel="icon" href="/blurry-gradient-haikei.svg" />
       </Head>
       <body>
         <Main />

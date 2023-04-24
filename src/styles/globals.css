@@ -35,3 +35,9 @@ body {
   min-width: 100vw;
   position: fixed;
 }
+
+.portal-wrapper {
+  position: fixed;
+  width: 800px;
+  height: 800px;
+}

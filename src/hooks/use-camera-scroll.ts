@@ -15,16 +15,13 @@ export default function useCameraScroll({
   const [active, toggleActive] = useState<boolean>(true);
   const moveCamera = () => {
     const top = document.body.getBoundingClientRect().top;
-
-    if (!target.current) {
-      return;
-    }
-    active
-      ? gsap.to(target.current.position, {
-          duration: 2,
-          y: top * 0.05,
-        })
-      : null;
+    target.current &&
+      (active
+        ? gsap.to(target.current.position, {
+            duration: 2,
+            y: top * 0.05,
+          })
+        : null);
   };
 
   useEffect(() => {
