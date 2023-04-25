@@ -16,7 +16,12 @@ import {
 } from "@react-three/drei";
 import { Canvas, useThree } from "@react-three/fiber";
 import Gem from "./gem";
-import { Bloom, EffectComposer } from "@react-three/postprocessing";
+import {
+  Bloom,
+  EffectComposer,
+  Outline,
+  Scanline,
+} from "@react-three/postprocessing";
 import Laptop from "./laptop";
 
 export default function MainCanvas() {
@@ -30,20 +35,21 @@ export default function MainCanvas() {
           makeDefault
         />
         <Environment preset="sunset" blur={1.9} resolution={256} />
-        <PresentationControls
-          speed={0.5}
-          azimuth={[-Math.PI / 2, Math.PI / 2]}
-          snap
-          polar={[-3, 3]}
+        <fog attach="fog" args={["slategrey", 15, 30]} />
+
+        <Float
+          floatingRange={[-0.051, 0.051]}
+          rotationIntensity={0.25}
+          floatIntensity={0.25}
         >
           <Laptop
-            scale={[0.1, 0.1, 0.1]}
-            rotation={[0, 0.5, 0]}
+            scale={[0.2, 0.2, 0.2]}
+            rotation={[0, 0.25, 0]}
             position={[-2, -2, -2]}
             castShadow
             receiveShadow
           />
-        </PresentationControls>
+        </Float>
 
         <EffectComposer>
           <Bloom
@@ -54,6 +60,7 @@ export default function MainCanvas() {
             luminanceSmoothing={1}
             luminanceThreshold={0.25}
           />
+          <Outline />
         </EffectComposer>
 
         <Gem />

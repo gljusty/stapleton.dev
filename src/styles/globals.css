@@ -37,7 +37,9 @@ body {
 }
 
 .portal-wrapper {
-  position: fixed;
-  width: 800px;
-  height: 800px;
+  background: linear-gradient(40deg, slategrey, white);
+  width: 1161px;
+  height: 692px;
+  scrollbar-width: none;
+  overflow-y: scroll;
 }

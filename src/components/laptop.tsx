@@ -6,15 +6,21 @@ source: https://sketchfab.com/3d-models/laptop-7d870e900889481395b4a575b9fa8c3e
 title: Laptop
 */
 
-import React, { useRef } from "react";
+import React, { useRef, useState } from "react";
 import { GroupProps, useThree } from "@react-three/fiber";
 import { BBAnchor, Html, useGLTF } from "@react-three/drei";
+import useScrollPosition from "../hooks/use-scroll-position";
+import { Vector3 } from "three";
+import Image from "next/image";
 
 export default function Laptop(props: GroupProps) {
+  const [open, toggleOpen] = useState<boolean>(false);
+
   //@ts-ignore
   const { nodes, materials } = useGLTF("/laptop.glb");
   const { camera } = useThree();
   const screenRef = useRef(null!);
+  const scrollPosition = useScrollPosition();
   return (
     <group {...props} dispose={null}>
       <group rotation={[-Math.PI / 2, 0, 0]}>
@@ -33,7 +39,7 @@ export default function Laptop(props: GroupProps) {
           </group>
           <group
             position={[0, 0.65, -10.3]}
-            rotation={[Math.PI, 0, -Math.PI]}
+            rotation={[-Math.PI, 0, -Math.PI]}
             scale={[100, 100, 88.24]}
           >
             <mesh
@@ -43,15 +49,42 @@ export default function Laptop(props: GroupProps) {
               material={materials.ComputerScreen}
               ref={screenRef}
               onClick={() => {
-                camera.lookAt(screenRef.current.position ?? [0, 0, 0]);
+                console.log("clicked");
+                /* camera.lookAt(new Vector3(10, 10, 0)); */
               }}
             >
-              <Html
-                occlude
-                position={[0, 0, 0]}
-                rotation={[0, 0, 0]}
-                wrapperClass="portal-wrapper"
-              ></Html>
+              <BBAnchor anchor={[0.01, 0.01, 0.01]}>
+                <Html
+                  transform
+                  occlude
+                  scale={[0.01, 0.01, 0.01]}
+                  position={[-0.029102, 0.078519, -0.021]}
+                  rotation={[0, Math.PI, 0]}
+                  className="portal-wrapper"
+                >
+                  <div style={{ height: "200vh" }}>
+                    <nav>
+                      <a
+                        href="/"
+                        style={{
+                          fontSize: 48,
+                          display: "flex",
+                          float: "right",
+                        }}
+                      >
+                        test 234
+                      </a>
+                    </nav>
+                    <Image
+                      src="/neptune.jpg"
+                      alt="neptune"
+                      width={500}
+                      height={200}
+                      style={{ transform: "translate(50%, 50%)" }}
+                    />
+                  </div>
+                </Html>
+              </BBAnchor>
             </mesh>
           </group>
         </group>
