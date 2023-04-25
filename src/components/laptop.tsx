@@ -12,6 +12,7 @@ import { BBAnchor, Html, useGLTF } from "@react-three/drei";
 import useScrollPosition from "../hooks/use-scroll-position";
 import { Vector3 } from "three";
 import Image from "next/image";
+import Link from "next/link";
 
 export default function Laptop(props: GroupProps) {
   const [open, toggleOpen] = useState<boolean>(false);
@@ -64,7 +65,7 @@ export default function Laptop(props: GroupProps) {
                 >
                   <div style={{ height: "200vh" }}>
                     <nav>
-                      <a
+                      <Link
                         href="/"
                         style={{
                           fontSize: 48,
@@ -73,7 +74,7 @@ export default function Laptop(props: GroupProps) {
                         }}
                       >
                         test 234
-                      </a>
+                      </Link>
                     </nav>
                     <Image
                       src="/neptune.jpg"
