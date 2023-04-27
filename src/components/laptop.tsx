@@ -7,90 +7,83 @@ title: Laptop
 */
 
 import React, { useRef, useState } from "react";
-import { GroupProps, useThree } from "@react-three/fiber";
-import { BBAnchor, Html, useGLTF } from "@react-three/drei";
-import useScrollPosition from "../hooks/use-scroll-position";
-import { Vector3 } from "three";
-import Image from "next/image";
-import Link from "next/link";
+import { BBAnchor, Float, Html, useGLTF } from "@react-three/drei";
+import gsap from "gsap";
+import Content from "./content";
 
-export default function Laptop(props: GroupProps) {
+export default function Laptop() {
   const [open, toggleOpen] = useState<boolean>(false);
 
   //@ts-ignore
   const { nodes, materials } = useGLTF("/laptop.glb");
-  const { camera } = useThree();
   const screenRef = useRef(null!);
-  const scrollPosition = useScrollPosition();
+
   return (
-    <group {...props} dispose={null}>
-      <group rotation={[-Math.PI / 2, 0, 0]}>
-        <group rotation={[Math.PI / 2, 0, 0]}>
-          <group
-            position={[0, 0.98, 0]}
-            rotation={[-Math.PI / 2, 0, 0]}
-            scale={100}
-          >
-            <mesh
-              castShadow
-              receiveShadow
-              geometry={nodes.Frame_ComputerFrame_0.geometry}
-              material={materials.ComputerFrame}
-            />
-          </group>
-          <group
-            position={[0, 0.65, -10.3]}
-            rotation={[-Math.PI, 0, -Math.PI]}
-            scale={[100, 100, 88.24]}
-          >
-            <mesh
-              castShadow
-              receiveShadow
-              geometry={nodes.Screen_ComputerScreen_0.geometry}
-              material={materials.ComputerScreen}
+    <Float
+      floatingRange={[-0.051, 0.051]}
+      rotationIntensity={0.25}
+      floatIntensity={0.25}
+    >
+      <group
+        scale={[0.2, 0.2, 0.2]}
+        rotation={[0, 0.25, 0]}
+        position={[-2, -2, -2]}
+        castShadow
+        receiveShadow
+        dispose={null}
+      >
+        <group rotation={[-Math.PI / 2, 0, 0]}>
+          <group rotation={[Math.PI / 2, 0, 0]}>
+            <group
+              position={[0, 0.98, 0]}
+              rotation={[-Math.PI / 2, 0, 0]}
+              scale={100}
+            >
+              <mesh
+                castShadow
+                receiveShadow
+                geometry={nodes.Frame_ComputerFrame_0.geometry}
+                material={materials.ComputerFrame}
+              />
+            </group>
+            <group
+              position={[0, 0.65, -10.3]}
+              rotation={[-Math.PI / 2, 0, -Math.PI]}
+              scale={[100, 100, 88.24]}
               ref={screenRef}
               onClick={() => {
-                console.log("clicked");
-                /* camera.lookAt(new Vector3(10, 10, 0)); */
+                screenRef.current &&
+                  gsap.to(screenRef.current.rotation, {
+                    duration: 1,
+                    x: open ? -Math.PI / 2 : -Math.PI,
+                  });
+                toggleOpen((o) => !o);
               }}
             >
-              <BBAnchor anchor={[0.01, 0.01, 0.01]}>
-                <Html
-                  transform
-                  occlude
-                  scale={[0.01, 0.01, 0.01]}
-                  position={[-0.029102, 0.078519, -0.021]}
-                  rotation={[0, Math.PI, 0]}
-                  className="portal-wrapper"
-                >
-                  <div style={{ height: "200vh" }}>
-                    <nav>
-                      <Link
-                        href="/"
-                        style={{
-                          fontSize: 48,
-                          display: "flex",
-                          float: "right",
-                        }}
-                      >
-                        test 234
-                      </Link>
-                    </nav>
-                    <Image
-                      src="/neptune.jpg"
-                      alt="neptune"
-                      width={500}
-                      height={200}
-                      style={{ transform: "translate(50%, 50%)" }}
-                    />
-                  </div>
-                </Html>
-              </BBAnchor>
-            </mesh>
+              <mesh
+                castShadow
+                receiveShadow
+                geometry={nodes.Screen_ComputerScreen_0.geometry}
+                material={materials.ComputerScreen}
+              >
+                <BBAnchor anchor={[0.01, 0.01, 0.01]}>
+                  <Html
+                    transform
+                    occlude
+                    scale={[0.01, 0.01, 0.01]}
+                    position={[-0.029102, 0.078519, -0.021]}
+                    rotation={[0, Math.PI, 0]}
+                    className="content-wrapper"
+                  >
+                    <Content />
+                  </Html>
+                </BBAnchor>
+              </mesh>
+            </group>
           </group>
         </group>
       </group>
-    </group>
+    </Float>
   );
 }
 

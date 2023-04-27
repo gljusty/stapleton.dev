@@ -1,0 +1,23 @@
+.container {
+  width: 100%;
+  min-height: 200vh;
+}
+
+.content {
+  padding: 5px;
+  display: flex;
+}
+
+.card {
+  border: 2px solid red;
+}
+
+.card > a {
+  text-decoration: none;
+}
+
+.nav {
+  display: flex;
+  float: right;
+  padding: 5px;
+}
