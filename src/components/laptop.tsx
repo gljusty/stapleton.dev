@@ -20,14 +20,14 @@ export default function Laptop() {
 
   return (
     <Float
-      floatingRange={[-0.051, 0.051]}
+      floatingRange={[-0.05, 0.05]}
       rotationIntensity={0.25}
       floatIntensity={0.25}
     >
       <group
         scale={[0.2, 0.2, 0.2]}
         rotation={[0, 0.25, 0]}
-        position={[-2, -2, -2]}
+        position={[-2, -2, -2.5]}
         castShadow
         receiveShadow
         dispose={null}

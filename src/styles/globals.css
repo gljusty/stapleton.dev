@@ -37,7 +37,7 @@ body {
 }
 
 .content-wrapper {
-  background: linear-gradient(40deg, slategrey, white);
+  background: linear-gradient(40deg, slategrey 6rem, slateblue);
   width: 1161px;
   height: 692px;
   padding: 20px;

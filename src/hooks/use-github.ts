@@ -4,7 +4,7 @@ export const useGithub = (): [any, () => void] => {
   const [data, setData] = useState();
 
   const fetchData = () => {
-    fetch("https://api.github.com/users/gljusty/repos", {
+    fetch("https://api.github.com/users/gljusty", {
       headers: {
         Accept: "application/vnd.github.v3+json",
       },
