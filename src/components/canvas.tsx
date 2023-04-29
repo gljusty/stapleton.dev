@@ -1,6 +1,7 @@
 import {
   Environment,
   Float,
+  Lightformer,
   PerspectiveCamera,
   Stats,
 } from "@react-three/drei";
