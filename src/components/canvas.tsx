@@ -1,14 +1,14 @@
 import {
   Environment,
-  Float,
-  Lightformer,
+  OrbitControls,
   PerspectiveCamera,
-  Stats,
+  PresentationControls,
 } from "@react-three/drei";
 import { Canvas } from "@react-three/fiber";
 import Blob from "./blob";
 import Laptop from "./laptop";
 import Lights from "./lights";
+import Phone from "./phone";
 
 export default function MainCanvas() {
   return (
@@ -20,17 +20,17 @@ export default function MainCanvas() {
           position={[0, 0, 10]}
           makeDefault
         />
+
+        <Lights />
         <Environment preset="sunset" blur={1} resolution={256} />
-        <fog attach="fog" args={["slategrey", 15, 30]} />
         <color attach="background" args={[0.01, 0.01, 0.01]} />
 
         <Laptop />
+        <PresentationControls snap>
+          <Phone />
+        </PresentationControls>
 
         <Blob />
-
-        <Lights />
-
-        <Stats />
       </Canvas>
     </div>
   );

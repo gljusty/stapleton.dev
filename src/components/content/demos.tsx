@@ -1,6 +1,5 @@
 import { useEffect } from "react";
 import { useGithub } from "../../hooks/use-github";
-import Card from "./card";
 
 export default function Demos() {
   const [data, getData] = useGithub();
@@ -9,5 +8,5 @@ export default function Demos() {
     getData();
   }, []);
 
-  return null /* data && data.repos.map((d, i) => <div key={i}>{d.owner.id}</div>) */;
+  return data ? <div style={{ fontSize: 96 }}>{Object.keys(data)}</div> : <></>;
 }

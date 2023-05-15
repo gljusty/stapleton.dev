@@ -6,84 +6,90 @@ source: https://sketchfab.com/3d-models/laptop-7d870e900889481395b4a575b9fa8c3e
 title: Laptop
 */
 
-import React, { useRef, useState } from "react";
+import { useEffect, useRef } from "react";
 import { BBAnchor, Float, Html, useGLTF } from "@react-three/drei";
-import gsap from "gsap";
+import { useStore } from "../utils/store";
 import Content from "./content";
+import gsap from "gsap";
 
 export default function Laptop() {
-  const [open, toggleOpen] = useState<boolean>(false);
+  const { open, toggleOpen } = useStore();
 
   //@ts-ignore
   const { nodes, materials } = useGLTF("/laptop.glb");
-  const screenRef = useRef(null!);
+  const ref = useRef(null!),
+    screenRef = useRef(null!);
+
+  useEffect(() => {
+    screenRef.current &&
+      gsap.to(screenRef.current.rotation, {
+        duration: 1,
+        x: open ? -Math.PI / 2 : -Math.PI,
+      });
+  }, [open]);
 
   return (
-    <Float
-      floatingRange={[-0.05, 0.05]}
-      rotationIntensity={0.25}
-      floatIntensity={0.25}
-    >
-      <group
-        scale={[0.2, 0.2, 0.2]}
-        rotation={[0, 0.25, 0]}
-        position={[-2, -2, -2.5]}
-        castShadow
-        receiveShadow
-        dispose={null}
+    <>
+      <Float
+        floatingRange={[-0.05, 0.05]}
+        rotationIntensity={0.25}
+        floatIntensity={0.25}
       >
-        <group rotation={[-Math.PI / 2, 0, 0]}>
-          <group rotation={[Math.PI / 2, 0, 0]}>
-            <group
-              position={[0, 0.98, 0]}
-              rotation={[-Math.PI / 2, 0, 0]}
-              scale={100}
-            >
-              <mesh
-                castShadow
-                receiveShadow
-                geometry={nodes.Frame_ComputerFrame_0.geometry}
-                material={materials.ComputerFrame}
-              />
-            </group>
-            <group
-              position={[0, 0.65, -10.3]}
-              rotation={[-Math.PI / 2, 0, -Math.PI]}
-              scale={[100, 100, 88.24]}
-              ref={screenRef}
-              onClick={() => {
-                screenRef.current &&
-                  gsap.to(screenRef.current.rotation, {
-                    duration: 1,
-                    x: open ? -Math.PI / 2 : -Math.PI,
-                  });
-                toggleOpen((o) => !o);
-              }}
-            >
-              <mesh
-                castShadow
-                receiveShadow
-                geometry={nodes.Screen_ComputerScreen_0.geometry}
-                material={materials.ComputerScreen}
+        <group
+          scale={[0.1, 0.1, 0.1]}
+          rotation={[0.125, -0.125, 0]}
+          position={[2, -2, 0]}
+          castShadow
+          receiveShadow
+          dispose={null}
+          ref={ref}
+        >
+          <group rotation={[-Math.PI / 2, 0, 0]}>
+            <group rotation={[Math.PI / 2, 0, 0]}>
+              <group
+                position={[0, 0.98, 0]}
+                rotation={[-Math.PI / 2, 0, 0]}
+                scale={100}
               >
-                <BBAnchor anchor={[0.01, 0.01, 0.01]}>
-                  <Html
-                    transform
-                    occlude
-                    scale={[0.01, 0.01, 0.01]}
-                    position={[-0.029102, 0.078519, -0.021]}
-                    rotation={[0, Math.PI, 0]}
-                    className="content-wrapper"
-                  >
-                    <Content />
-                  </Html>
-                </BBAnchor>
-              </mesh>
+                <mesh
+                  castShadow
+                  receiveShadow
+                  geometry={nodes.Frame_ComputerFrame_0.geometry}
+                  material={materials.ComputerFrame}
+                  onClick={toggleOpen}
+                />
+              </group>
+              <group
+                position={[0, 0.65, -10.3]}
+                rotation={[-Math.PI / 2, 0, -Math.PI]}
+                scale={[100, 100, 88.24]}
+                ref={screenRef}
+              >
+                <mesh
+                  castShadow
+                  receiveShadow
+                  geometry={nodes.Screen_ComputerScreen_0.geometry}
+                  material={materials.ComputerScreen}
+                >
+                  <BBAnchor anchor={[0.01, 0.01, 0.019595]}>
+                    <Html
+                      transform
+                      occlude
+                      scale={[0.01, 0.01, 0.01]}
+                      position={[-0.01362575, 0.09379, -0.021]}
+                      rotation={[0, Math.PI, 0]}
+                      className="content-wrapper"
+                    >
+                      <Content />
+                    </Html>
+                  </BBAnchor>
+                </mesh>
+              </group>
             </group>
           </group>
         </group>
-      </group>
-    </Float>
+      </Float>
+    </>
   );
 }
 

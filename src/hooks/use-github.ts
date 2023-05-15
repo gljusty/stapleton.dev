@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 
 export const useGithub = (): [any, () => void] => {
   const [data, setData] = useState();
@@ -12,10 +12,6 @@ export const useGithub = (): [any, () => void] => {
       .then((res) => res.json())
       .then((json) => setData(json));
   };
-
-  useEffect(() => {
-    data && console.log(data);
-  }, [data]);
 
   return [data, fetchData];
 };

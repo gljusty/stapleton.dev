@@ -37,10 +37,29 @@ body {
 }
 
 .content-wrapper {
-  background: linear-gradient(40deg, slategrey 6rem, slateblue);
-  width: 1161px;
-  height: 692px;
-  padding: 20px;
+  background-color: white;
   scrollbar-width: none;
+  width: 1150px;
+  height: 655px;
+  padding: 40px;
   overflow-y: scroll;
+  opacity: 1;
+  color: black;
+  font-size: 96 !important;
+}
+
+.phone-content-wrapper {
+  background-color: white;
+  scrollbar-width: none;
+  width: 600px;
+  height: 655px;
+  padding: 40px;
+  overflow-y: scroll;
+  opacity: 1;
+  color: black;
+  font-size: 96 !important;
+}
+
+.content-wrapper::-webkit-scrollbar {
+  display: none;
 }
