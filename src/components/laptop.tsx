@@ -9,7 +9,6 @@ title: Laptop
 import { useEffect, useRef } from "react";
 import { BBAnchor, Float, Html, useGLTF } from "@react-three/drei";
 import { useStore } from "../utils/store";
-import Content from "./content";
 import gsap from "gsap";
 
 export default function Laptop() {
@@ -24,7 +23,7 @@ export default function Laptop() {
     screenRef.current &&
       gsap.to(screenRef.current.rotation, {
         duration: 1,
-        x: open ? -Math.PI / 2 : -Math.PI,
+        x: open ? -Math.PI : -Math.PI / 2,
       });
   }, [open]);
 
@@ -80,7 +79,7 @@ export default function Laptop() {
                       rotation={[0, Math.PI, 0]}
                       className="content-wrapper"
                     >
-                      <Content />
+                      test234
                     </Html>
                   </BBAnchor>
                 </mesh>

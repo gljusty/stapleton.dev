@@ -26,6 +26,7 @@ body {
 
 body {
   background: unset;
+  scroll-behavior: smooth;
 }
 
 #canvas-wrapper {
@@ -37,7 +38,7 @@ body {
 }
 
 .content-wrapper {
-  background-color: white;
+  background: unset;
   scrollbar-width: none;
   width: 1150px;
   height: 655px;
@@ -47,17 +48,14 @@ body {
   color: black;
   font-size: 96 !important;
 }
-
 .phone-content-wrapper {
-  background-color: white;
+  background-color: unset;
+  border-radius: 8px;
   scrollbar-width: none;
-  width: 600px;
-  height: 655px;
-  padding: 40px;
-  overflow-y: scroll;
+  width: 60px;
+  height: 125px;
   opacity: 1;
   color: black;
-  font-size: 96 !important;
 }
 
 .content-wrapper::-webkit-scrollbar {

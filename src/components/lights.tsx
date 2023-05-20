@@ -15,12 +15,9 @@ export default function Lights() {
 
       <directionalLight
         position={[2.3, 2.0, 0.4]}
-        intensity={0.465}
-        color={[1, 0, 0.5]}
+        intensity={0.65}
         castShadow
       />
-
-      <pointLight intensity={0.625} position={[10, 10, -10]} />
     </>
   );
 }

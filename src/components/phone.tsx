@@ -6,37 +6,40 @@ source: https://sketchfab.com/3d-models/iphone-se-3-2022-concept-75f86bb680f74a7
 title: iPhone SE 3 - 2022 Concept
 */
 
-import {
-  BBAnchor,
-  Html,
-  MeshReflectorMaterial,
-  useGLTF,
-} from "@react-three/drei";
-import { useStore } from "../utils/store";
+import { Html, useGLTF } from "@react-three/drei";
 import { useEffect, useRef } from "react";
-import { gsap } from "gsap";
-import { MeshStandardMaterial } from "three";
+import { useStore } from "../utils/store";
+import { Power1, gsap } from "gsap";
 
-export default function Phone(props) {
+export default function Phone() {
   //@ts-ignore
   const { nodes, materials } = useGLTF("/iphone_se_3_-_2022_concept.glb");
-  const { open, toggleOpen } = useStore();
   const ref = useRef(null!);
 
+  const { open } = useStore();
+
   useEffect(() => {
-    gsap.to(ref.current.rotation, {
-      x: open ? Math.PI / 2 : 0,
-      duration: 1,
+    gsap.to(ref.current.position, {
+      y: open ? -3.5 : -20,
+      duration: 2,
+      ease: Power1.easeInOut,
     });
   }, [open]);
+
   return (
     <group
-      {...props}
-      position={[-3, -2, -1]}
-      scale={[0.25, 0.25, 0.25]}
+      position={[0, -20, -5]}
+      rotation={[1.25, 0.06125, -0.125]}
       dispose={null}
       ref={ref}
-      onClick={toggleOpen}
+      onClick={() => {
+        gsap.to(ref.current.rotation, {
+          z: ref.current.rotation.z + Math.PI * 2,
+          duration: 1,
+          scrub: 1,
+          scrollTrigger: "body",
+        });
+      }}
     >
       <group rotation={[Math.PI, 0, Math.PI]}>
         <group rotation={[Math.PI / 2, 0, 0]} scale={0.01}>
@@ -148,19 +151,16 @@ export default function Phone(props) {
               receiveShadow
               geometry={nodes["IP_SE_3_-_2022_Wallpaper_0"].geometry}
             >
-              <meshStandardMaterial color={[0.25, 0, 0.25]} />
-              <BBAnchor anchor={[0.01, 0.01, 0.019595]}>
-                <Html
-                  transform
-                  occlude
-                  scale={[0.25, 0.25, 0.25]}
-                  position={[-0.01362575, 0.09379, -0.021]}
-                  rotation={[-Math.PI / 2, 0, -Math.PI]}
-                  className="phone-content-wrapper"
-                >
-                  test 2345
-                </Html>
-              </BBAnchor>
+              <meshStandardMaterial color={[0, 0, 0]} />
+              <Html
+                transform
+                occlude
+                className="phone-content-wrapper"
+                rotation={[Math.PI / 2, -Math.PI, 0]}
+                position={[0.035, 0.185, 1.79]}
+              >
+                test 2345
+              </Html>
             </mesh>
           </group>
         </group>
