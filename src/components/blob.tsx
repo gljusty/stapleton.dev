@@ -3,7 +3,6 @@ import { useFrame } from "@react-three/fiber";
 import {
   Float,
   MeshDistortMaterial,
-  MeshTransmissionMaterial,
   MeshWobbleMaterial,
 } from "@react-three/drei";
 import { clamp } from "three/src/math/MathUtils";

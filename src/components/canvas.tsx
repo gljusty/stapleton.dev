@@ -1,5 +1,4 @@
 import {
-  Environment,
   PerspectiveCamera,
   PresentationControls,
   Stats,
@@ -8,7 +7,6 @@ import { Canvas } from "@react-three/fiber";
 import Blob from "./blob";
 import Lights from "./lights";
 import Phone from "./phone";
-import { EffectComposer, Scanline } from "@react-three/postprocessing";
 import Laptop from "./laptop";
 
 export default function MainCanvas() {
@@ -22,7 +20,6 @@ export default function MainCanvas() {
           makeDefault
         />
         <Lights />
-        <Environment preset="sunset" blur={1} resolution={256} />
         <color attach="background" args={[0.01, 0.01, 0.01]} />
 
         <Blob />
