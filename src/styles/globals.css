@@ -40,14 +40,14 @@ body {
 .content-wrapper {
   background: unset;
   scrollbar-width: none;
-  width: 1150px;
+  width: 1160px;
   height: 655px;
   padding: 40px;
   overflow-y: scroll;
   opacity: 1;
   color: black;
-  font-size: 96 !important;
 }
+
 .phone-content-wrapper {
   background-color: unset;
   border-radius: 8px;
@@ -55,7 +55,7 @@ body {
   width: 60px;
   height: 125px;
   opacity: 1;
-  color: black;
+  color: white;
 }
 
 .content-wrapper::-webkit-scrollbar {

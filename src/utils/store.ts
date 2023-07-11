@@ -1,30 +1,37 @@
 import { create } from "zustand";
 
-enum CONTENT_MODE {
+export enum PHONE_STATE {
   DEMOS = "DEMOS",
-  ABOUT = "ABOUT",
+  SPINNING = "SPINNING",
+  IDLE = "IDLE",
+}
+
+export enum LAPTOP_STATE {
+  DEMOS = "DEMOS",
+  CONTACT = "CONTACT",
   IDLE = "IDLE",
 }
 
 type AppState = {
   open: boolean;
   toggleOpen: () => void;
-  contentMode: CONTENT_MODE;
-  updateMode: (u?: CONTENT_MODE) => void;
+  phoneMode: PHONE_STATE;
+  updatePhoneMode: (u: PHONE_STATE) => void;
+  laptopMode: LAPTOP_STATE;
+  updateLaptopMode: (u: LAPTOP_STATE) => void;
 };
 
 export const useStore = create<AppState>()((set) => ({
   open: false,
   toggleOpen: () => set((state) => ({ open: !state.open })),
-  contentMode: CONTENT_MODE.IDLE,
-  updateMode: () =>
-    set((state, u?: CONTENT_MODE) => ({
-      contentMode: u
-        ? u
-        : CONTENT_MODE[
-            Object.keys(CONTENT_MODE).indexOf(state.contentMode) < 2
-              ? Object.keys(CONTENT_MODE).indexOf(state.contentMode) + 1
-              : 0
-          ],
+  phoneMode: PHONE_STATE.IDLE,
+  updatePhoneMode: (u: PHONE_STATE) =>
+    set((state) => ({
+      phoneMode: u,
+    })),
+  laptopMode: LAPTOP_STATE.IDLE,
+  updateLaptopMode: (u: LAPTOP_STATE) =>
+    set(() => ({
+      laptopMode: u,
     })),
 }));

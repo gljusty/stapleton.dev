@@ -8,7 +8,7 @@ title: iPhone SE 3 - 2022 Concept
 
 import { Html, useGLTF } from "@react-three/drei";
 import { useEffect, useRef } from "react";
-import { useStore } from "../utils/store";
+import { PHONE_STATE, useStore } from "../utils/store";
 import { Power1, gsap } from "gsap";
 
 export default function Phone() {
@@ -16,29 +16,34 @@ export default function Phone() {
   const { nodes, materials } = useGLTF("/iphone_se_3_-_2022_concept.glb");
   const ref = useRef(null!);
 
-  const { open } = useStore();
+  const { open, phoneMode, updatePhoneMode } = useStore();
 
   useEffect(() => {
     gsap.to(ref.current.position, {
       y: open ? -3.5 : -20,
-      duration: 2,
+      duration: 1,
       ease: Power1.easeInOut,
     });
   }, [open]);
 
   return (
     <group
-      position={[0, -20, -5]}
-      rotation={[1.25, 0.06125, -0.125]}
+      position={[-2, -20, -5]}
+      rotation={[1.25, 0.06125, -0.25]}
       dispose={null}
       ref={ref}
       onClick={() => {
-        gsap.to(ref.current.rotation, {
-          z: ref.current.rotation.z + Math.PI * 2,
-          duration: 1,
-          scrub: 1,
-          scrollTrigger: "body",
-        });
+        const handleSuccess = () => {
+          updatePhoneMode(PHONE_STATE.SPINNING);
+          gsap.to(ref.current.rotation, {
+            z: ref.current.rotation.z + Math.PI * 2,
+            duration: 1,
+            onComplete: () => {
+              updatePhoneMode(PHONE_STATE.IDLE);
+            },
+          });
+        };
+        phoneMode === PHONE_STATE.IDLE && handleSuccess();
       }}
     >
       <group rotation={[Math.PI, 0, Math.PI]}>
@@ -159,7 +164,7 @@ export default function Phone() {
                 rotation={[Math.PI / 2, -Math.PI, 0]}
                 position={[0.035, 0.185, 1.79]}
               >
-                test 2345
+                <div style={{ fontSize: "20px" }}>test 2345</div>
               </Html>
             </mesh>
           </group>

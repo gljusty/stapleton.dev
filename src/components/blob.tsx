@@ -20,7 +20,7 @@ export default function Blob() {
   return (
     <group
       dispose={null}
-      position={[0, 0, -20 + factor]}
+      position={[0, 0, -20 - factor]}
       rotation={[0.75 + scrollPos / 400, 0, -Math.PI / 2]}
     >
       <Float speed={0.4} floatIntensity={1.4} floatingRange={[-0.21, 0.21]}>
@@ -32,17 +32,17 @@ export default function Blob() {
             wireframe
           />
         </mesh>
-        {Array(3)
+        {Array(3 + Math.floor(factor))
           .fill(0)
           .map((_, idx) => (
             <mesh
-              rotation={[2, Math.PI + idx, (0.25 * idx) / 4]}
+              rotation={[2, Math.PI + idx, 0.25 ** idx / 4]}
               key={idx}
               dispose={null}
               position={[0, 0, 0]}
             >
               <torusGeometry
-                args={[3.65 + factor / 3, 0.0125, 128, 128, 1 - factor / 6]}
+                args={[3.65 + factor / 2, 0.0125, 128, 128, 1 - factor / 6]}
               />
               <MeshWobbleMaterial
                 color={[Math.random() ** idx, 0, 0.25 * idx]}

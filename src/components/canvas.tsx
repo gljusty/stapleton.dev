@@ -7,7 +7,7 @@ import { Canvas } from "@react-three/fiber";
 import Blob from "./blob";
 import Lights from "./lights";
 import Phone from "./phone";
-import Laptop from "./laptop";
+import Laptop from "./laptop/laptop.component";
 
 export default function MainCanvas() {
   return (
@@ -20,7 +20,7 @@ export default function MainCanvas() {
           makeDefault
         />
         <Lights />
-        <color attach="background" args={[0.01, 0.01, 0.01]} />
+        <color attach="background" args={[0.0, 0.0, 0.0]} />
 
         <Blob />
         <Phone />

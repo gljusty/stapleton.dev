@@ -8,8 +8,9 @@ title: Laptop
 
 import { useEffect, useRef } from "react";
 import { BBAnchor, Float, Html, useGLTF } from "@react-three/drei";
-import { useStore } from "../utils/store";
+import { useStore } from "../../utils/store";
 import gsap from "gsap";
+import LaptopContent from "./content.component";
 
 export default function Laptop() {
   const { open, toggleOpen } = useStore();
@@ -79,7 +80,7 @@ export default function Laptop() {
                       rotation={[0, Math.PI, 0]}
                       className="content-wrapper"
                     >
-                      test234
+                      {open && <LaptopContent />}
                     </Html>
                   </BBAnchor>
                 </mesh>
