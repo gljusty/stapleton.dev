@@ -28,8 +28,8 @@ export default function Phone() {
 
   return (
     <group
-      position={[-2, -20, -5]}
-      rotation={[1.25, 0.06125, -0.25]}
+      position={[-5, -20, -5]}
+      rotation={[1.25, 0.25, -0.325]}
       dispose={null}
       ref={ref}
       onClick={() => {

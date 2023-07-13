@@ -1,10 +1,11 @@
 import type { AppProps } from "next/app";
 import { ScrollTrigger } from "gsap/dist/ScrollTrigger";
-import { MantineProvider } from "@mantine/core";
+import { AppShell, MantineProvider } from "@mantine/core";
 import { defaultTheme } from "../utils/themes/default";
 import gsap from "gsap";
 
 import "../styles/globals.css";
+import Nav from "../components/nav";
 
 gsap.registerPlugin(ScrollTrigger);
 

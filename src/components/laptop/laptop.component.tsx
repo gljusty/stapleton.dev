@@ -21,74 +21,77 @@ export default function Laptop() {
     screenRef = useRef(null!);
 
   useEffect(() => {
-    screenRef.current &&
+    const tl = gsap.timeline();
+    tl.add(
+      gsap.to(ref.current.position, {
+        duration: 1,
+        y: open ? -2 : -10,
+      })
+    );
+    tl.add(
       gsap.to(screenRef.current.rotation, {
         duration: 1,
         x: open ? -Math.PI : -Math.PI / 2,
-      });
+      })
+    );
+    screenRef.current && tl.play();
   }, [open]);
 
   return (
     <>
-      <Float
-        floatingRange={[-0.05, 0.05]}
-        rotationIntensity={0.25}
-        floatIntensity={0.25}
+      <group
+        scale={[0.1, 0.1, 0.1]}
+        rotation={[0.125, 0.125, 0]}
+        position={[-1, -10, 0]}
+        castShadow
+        receiveShadow
+        dispose={null}
+        ref={ref}
       >
-        <group
-          scale={[0.1, 0.1, 0.1]}
-          rotation={[0.125, -0.125, 0]}
-          position={[2, -2, 0]}
-          castShadow
-          receiveShadow
-          dispose={null}
-          ref={ref}
-        >
-          <group rotation={[-Math.PI / 2, 0, 0]}>
-            <group rotation={[Math.PI / 2, 0, 0]}>
-              <group
-                position={[0, 0.98, 0]}
-                rotation={[-Math.PI / 2, 0, 0]}
-                scale={100}
+        <group rotation={[-Math.PI / 2, 0, 0]}>
+          <group rotation={[Math.PI / 2, 0, 0]}>
+            <group
+              position={[0, 0.98, 0]}
+              rotation={[-Math.PI / 2, 0, 0]}
+              scale={100}
+            >
+              <mesh
+                castShadow
+                receiveShadow
+                geometry={nodes.Frame_ComputerFrame_0.geometry}
+                material={materials.ComputerFrame}
+                onClick={toggleOpen}
+              />
+            </group>
+            <group
+              position={[0, 0.65, -10.3]}
+              rotation={[-Math.PI / 2, 0, -Math.PI]}
+              scale={[100, 100, 88.24]}
+              ref={screenRef}
+            >
+              <mesh
+                castShadow
+                receiveShadow
+                geometry={nodes.Screen_ComputerScreen_0.geometry}
+                material={materials.ComputerScreen}
               >
-                <mesh
-                  castShadow
-                  receiveShadow
-                  geometry={nodes.Frame_ComputerFrame_0.geometry}
-                  material={materials.ComputerFrame}
-                  onClick={toggleOpen}
-                />
-              </group>
-              <group
-                position={[0, 0.65, -10.3]}
-                rotation={[-Math.PI / 2, 0, -Math.PI]}
-                scale={[100, 100, 88.24]}
-                ref={screenRef}
-              >
-                <mesh
-                  castShadow
-                  receiveShadow
-                  geometry={nodes.Screen_ComputerScreen_0.geometry}
-                  material={materials.ComputerScreen}
-                >
-                  <BBAnchor anchor={[0.01, 0.01, 0.019595]}>
-                    <Html
-                      transform
-                      occlude
-                      scale={[0.01, 0.01, 0.01]}
-                      position={[-0.01362575, 0.09379, -0.021]}
-                      rotation={[0, Math.PI, 0]}
-                      className="content-wrapper"
-                    >
-                      {open && <LaptopContent />}
-                    </Html>
-                  </BBAnchor>
-                </mesh>
-              </group>
+                <BBAnchor anchor={[0.01, 0.01, 0.025]}>
+                  <Html
+                    transform
+                    occlude
+                    scale={[0.01, 0.01, 0.01]}
+                    position={[-0.01362575, 0.09379, -0.021]}
+                    rotation={[0, Math.PI, 0]}
+                    className="content-wrapper"
+                  >
+                    {open && <LaptopContent />}
+                  </Html>
+                </BBAnchor>
+              </mesh>
             </group>
           </group>
         </group>
-      </Float>
+      </group>
     </>
   );
 }
