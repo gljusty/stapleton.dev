@@ -5,7 +5,11 @@ export default function Nav() {
   const { toggleOpen } = useStore();
   return (
     <>
-      <Button size="xl" onClick={toggleOpen} />
+      <Button
+        size="xl"
+        style={{ position: "fixed", top: "200px", left: "50%" }}
+        onClick={toggleOpen}
+      />
     </>
   );
 }

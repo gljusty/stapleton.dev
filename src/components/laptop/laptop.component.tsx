@@ -9,7 +9,7 @@ title: Laptop
 import { useEffect, useRef } from "react";
 import { BBAnchor, Float, Html, useGLTF } from "@react-three/drei";
 import { useStore } from "../../utils/store";
-import gsap from "gsap";
+import gsap, { Power1 } from "gsap";
 import LaptopContent from "./content.component";
 
 export default function Laptop() {
@@ -25,12 +25,14 @@ export default function Laptop() {
     tl.add(
       gsap.to(ref.current.position, {
         duration: 1,
+        ease: Power1.easeInOut,
         y: open ? -2 : -10,
       })
     );
     tl.add(
       gsap.to(screenRef.current.rotation, {
         duration: 1,
+        ease: Power1.easeInOut,
         x: open ? -Math.PI : -Math.PI / 2,
       })
     );

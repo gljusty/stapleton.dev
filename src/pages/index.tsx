@@ -6,9 +6,8 @@ export default function HomePage() {
   return (
     <>
       <MainCanvas />
-      <Container h={"300vh"}>
-        <Nav />
-      </Container>
+      <Nav />
+      <Container h={"300vh"}></Container>
     </>
   );
 }
