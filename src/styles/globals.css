@@ -1,6 +1,6 @@
 :root {
   --max-width: 1100px;
-  --border-radius: 20px;
+  --border-radius: 8px;
   --font-mono: ui-monospace, Menlo, Monaco, "Cascadia Mono", "Segoe UI Mono",
     "Roboto Mono", "Oxygen Mono", "Ubuntu Monospace", "Source Code Pro",
     "Fira Mono", "Droid Sans Mono", "Courier New", monospace;
@@ -21,11 +21,13 @@
 html,
 body {
   overflow-x: hidden;
+  font-family: Courier;
 }
 
 body {
   background: unset;
   scroll-behavior: smooth;
+  max-width: var(--max-width);
 }
 
 #canvas-wrapper {
@@ -34,6 +36,57 @@ body {
   min-height: 100vh;
   min-width: 100vw;
   position: fixed;
+}
+
+.navbar {
+  width: 90%;
+  height: 70px;
+  position: fixed;
+  top: 5%;
+  left: 5%;
+  background: linear-gradient(-140deg, black, white);
+  border-radius: var(--border-radius);
+  color: white;
+  z-index: 100;
+  transition: all 250ms linear;
+}
+
+.foot {
+  border-radius: var(--border-radius);
+  width: 20%;
+  height: 70px;
+  position: fixed;
+  left: 66%;
+  bottom: 5%;
+  background: linear-gradient(140deg, grey, black);
+  z-index: 100;
+  transition: all 250ms linear;
+}
+
+.foot-link {
+  background-color: white;
+}
+
+.fade {
+  opacity: 0.75;
+  transition: opacity 250ms linear;
+}
+
+.nav-link {
+  padding: 5px 10px;
+  margin: 0px 0.5em;
+  color: white;
+  font-weight: 800;
+  font-size: 18px;
+  text-decoration: none;
+  opacity: 1 !important;
+  border-radius: var(--border-radius);
+}
+
+.nav-link:hover {
+  background-color: rgba(0, 0, 0, 0.75);
+  z-index: -1;
+  opacity: 1;
 }
 
 .content-wrapper {

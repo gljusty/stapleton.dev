@@ -1,6 +1,11 @@
+import useScrollPosition from "../hooks/use-scroll-position";
+
 export default function Lights() {
+  const scrollPos = useScrollPosition();
   return (
     <>
+      <ambientLight intensity={(0.75 * scrollPos) / 4000} />
+
       <directionalLight
         position={[0.3, 3.0, 0.4]}
         intensity={0.284}

@@ -31,7 +31,7 @@ export const useStore = create<AppState>()((set) => ({
     })),
   laptopMode: LAPTOP_STATE.IDLE,
   updateLaptopMode: (u: LAPTOP_STATE) =>
-    set(() => ({
+    set((state) => ({
       laptopMode: u,
     })),
 }));

@@ -34,8 +34,10 @@ export default function Laptop() {
         duration: 1,
         ease: Power1.easeInOut,
         x: open ? -Math.PI : -Math.PI / 2,
-      })
+      }),
+      "-=0.5"
     );
+
     screenRef.current && tl.play();
   }, [open]);
 

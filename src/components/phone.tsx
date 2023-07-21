@@ -21,7 +21,7 @@ export default function Phone() {
   useEffect(() => {
     gsap.to(ref.current.position, {
       y: open ? -3.5 : -20,
-      duration: 1,
+      duration: 2,
       ease: Power1.easeInOut,
     });
   }, [open]);
