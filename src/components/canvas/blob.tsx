@@ -10,19 +10,19 @@ export default function Blob() {
     groupRef = useRef(null!);
   const scrollPos = useScrollPosition();
 
+  const lastTop = pageYOffset || document.body.scrollTop;
+  const { open, toggleOpen } = useStore();
+
+  const safelyToggleOpen = () => {
+    let currentTop = window.pageYOffset || document.body.scrollTop;
+    if (currentTop > lastTop) {
+      !open && toggleOpen();
+    } else if (currentTop < lastTop) {
+      toggleOpen();
+    }
+  };
+
   useLayoutEffect(() => {
-    const lastTop = pageYOffset || document.body.scrollTop;
-    const { open, toggleOpen } = useStore();
-
-    const safelyToggleOpen = () => {
-      let currentTop = window.pageYOffset || document.body.scrollTop;
-      if (currentTop > lastTop) {
-        !open && toggleOpen();
-      } else if (currentTop < lastTop) {
-        toggleOpen();
-      }
-    };
-
     let ctx = gsap.context(() => {
       const tl = gsap.timeline({
         scrollTrigger: {
@@ -77,7 +77,7 @@ export default function Blob() {
     });
 
     return () => ctx.revert();
-  }, []);
+  }, [safelyToggleOpen]);
 
   return (
     <>
