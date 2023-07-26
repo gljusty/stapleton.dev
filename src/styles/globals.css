@@ -44,7 +44,7 @@ body {
   position: fixed;
   top: 5%;
   left: 5%;
-  background: linear-gradient(-140deg, black, white);
+  background: linear-gradient(140deg, white, black);
   border-radius: var(--border-radius);
   color: white;
   z-index: 100;
@@ -54,22 +54,23 @@ body {
 .foot {
   border-radius: var(--border-radius);
   width: 20%;
-  height: 70px;
   position: fixed;
-  left: 66%;
+  opacity: 0;
+  padding: 10px;
+  left: 50%;
+  transform: translate(-50%, -50%);
   bottom: 5%;
-  background: linear-gradient(140deg, grey, black);
   z-index: 100;
   transition: all 250ms linear;
 }
 
-.foot-link {
-  background-color: white;
+.fade {
+  opacity: 0.775;
+  transition: opacity 250ms linear;
 }
 
-.fade {
-  opacity: 0.75;
-  transition: opacity 250ms linear;
+.face > * {
+  opacity: 1;
 }
 
 .nav-link {
@@ -86,7 +87,8 @@ body {
 .nav-link:hover {
   background-color: rgba(0, 0, 0, 0.75);
   z-index: -1;
-  opacity: 1;
+  opacity: 1.5 !important;
+  color: white;
 }
 
 .content-wrapper {

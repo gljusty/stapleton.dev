@@ -1,6 +1,6 @@
 import { Button } from "@mantine/core";
-import { useStore } from "../../utils/store";
-import { LAPTOP_STATE } from "../../utils/store";
+import { useStore } from "../../../utils/store";
+import { LAPTOP_STATE } from "../../../utils/store";
 import { useCallback } from "react";
 
 export default function LaptopContent() {

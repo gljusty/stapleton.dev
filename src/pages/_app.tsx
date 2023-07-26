@@ -5,6 +5,7 @@ import { defaultTheme } from "../utils/themes/default";
 import { Navbar } from "../components/layout/nav.component";
 import gsap from "gsap";
 
+import "animate.css";
 import "../styles/globals.css";
 import { Footer } from "../components/layout/foot.component";
 
