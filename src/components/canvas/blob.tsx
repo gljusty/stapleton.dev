@@ -14,17 +14,16 @@ export default function Blob() {
   const factor = clamp(scrollPos * 0.0025, 0, 4);
   const scalar = 0.01 + scrollPos / 8000;
   const lastTop = pageYOffset || document.body.scrollTop;
-
-  const safelyToggleOpen = () => {
-    let currentTop = window.pageYOffset || document.body.scrollTop;
-    if (currentTop > lastTop) {
-      !open && toggleOpen();
-    } else if (currentTop < lastTop) {
-      toggleOpen();
-    }
-  };
-
   useLayoutEffect(() => {
+    const safelyToggleOpen = () => {
+      let currentTop = window.pageYOffset || document.body.scrollTop;
+      if (currentTop > lastTop) {
+        !open && toggleOpen();
+      } else if (currentTop < lastTop) {
+        toggleOpen();
+      }
+    };
+
     let ctx = gsap.context(() => {
       const tl = gsap.timeline({
         scrollTrigger: {
