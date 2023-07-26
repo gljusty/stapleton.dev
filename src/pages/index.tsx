@@ -6,7 +6,7 @@ export default function HomePage() {
     <>
       <MainCanvas />
       <Container h={"400vh"} className="content-container">
-        <div
+        {/* <div
           style={{
             position: "absolute",
             zIndex: 100,
@@ -16,8 +16,8 @@ export default function HomePage() {
             fontSize: "32px",
           }}
         >
-          Let's make something worth making
-        </div>
+          Lets make something worth making
+        </div> */}
       </Container>
     </>
   );
