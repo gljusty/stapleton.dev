@@ -79,7 +79,7 @@ export default function Blob() {
     });
 
     return () => ctx.revert();
-  }, [toggleOpen]);
+  }, [toggleOpen, open]);
 
   return (
     <>
