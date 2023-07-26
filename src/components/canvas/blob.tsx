@@ -9,13 +9,11 @@ export default function Blob() {
   const ref = useRef(null!),
     groupRef = useRef(null!);
   const scrollPos = useScrollPosition();
-  const { open, toggleOpen } = useStore();
-
-  const factor = clamp(scrollPos * 0.0025, 0, 4);
-  const scalar = 0.01 + scrollPos / 8000;
 
   useLayoutEffect(() => {
     const lastTop = pageYOffset || document.body.scrollTop;
+    const { open, toggleOpen } = useStore();
+
     const safelyToggleOpen = () => {
       let currentTop = window.pageYOffset || document.body.scrollTop;
       if (currentTop > lastTop) {
@@ -79,7 +77,7 @@ export default function Blob() {
     });
 
     return () => ctx.revert();
-  }, [toggleOpen, open]);
+  }, []);
 
   return (
     <>
