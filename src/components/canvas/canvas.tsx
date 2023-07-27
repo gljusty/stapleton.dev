@@ -51,23 +51,6 @@ export default function MainCanvas() {
 
           <Lights />
           <color attach="background" args={[0.0, 0.0, 0.0]} />
-          <EffectComposer
-            multisampling={16}
-            autoClear
-            enabled={isDesktop && !open}
-            disableNormalPass
-            depthBuffer
-          >
-            <Grid
-              blendFunction={BlendFunction.OVERLAY} // blend mode
-              scale={0.5} // grid pattern scale
-              lineWidth={10.0} // grid pattern line width
-            />
-            <ChromaticAberration
-              blendFunction={BlendFunction.COLOR_BURN}
-              offset={new Vector2(0.009275, 0.002)}
-            />
-          </EffectComposer>
 
           <Blob />
           <Phone />
@@ -81,7 +64,7 @@ export default function MainCanvas() {
           </PresentationControls>
 
           <Preload all />
-          <Perf position="bottom-left" />
+          <Perf position="bottom-right" />
         </Canvas>
       </div>
     </Suspense>

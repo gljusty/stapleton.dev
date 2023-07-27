@@ -40,7 +40,7 @@ body {
 
 .navbar {
   width: 90%;
-  height: 70px;
+  height: 80px;
   position: fixed;
   top: 5%;
   left: 5%;
@@ -57,8 +57,7 @@ body {
   position: fixed;
   opacity: 0;
   padding: 10px;
-  left: 50%;
-  transform: translate(-50%, -50%);
+  left: 66%;
   bottom: 5%;
   z-index: 100;
   transition: all 250ms linear;
